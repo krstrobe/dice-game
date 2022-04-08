@@ -15,26 +15,43 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
     document.querySelector('.current-score').textContent = 0;
     switchPlayer();
     currentScore = 0;
+    if(Number(document.getElementById('score--0').textContent) >= 100)
+    {
+      document.querySelector('.player--0').classList.remove('player--active');
+      document.querySelector('.player--0').classList.add('player--winner');
+    }
   } else if (currentPlayer === 'Player 2') {
     totalScore2 = totalScore2 + currentScore2;
     document.getElementById('score--1').textContent = totalScore2;
     document.getElementById('current--1').textContent = 0;
     switchPlayer();
     currentScore2 = 0;
+    if(Number(document.getElementById('score--1').textContent) >= 100)
+    {
+      document.querySelector('.player--0').classList.remove('player--active');
+      document.querySelector('.player--1').classList.add('player--winner');
+    }
   }
 });
 
 document.querySelector('.btn--new').addEventListener('click', reset);
 
+
 function reset() {
   currentPlayer = 'Player 1';
   document.querySelector('.player--0').classList.add('player--active');
   document.querySelector('.player--1').classList.remove('player--active');
+  document.querySelector('.player--0').classList.remove('player--winner');
+  document.querySelector('.player--1').classList.remove('player--winner');
   document.getElementById('score--0').textContent = 0;
   document.querySelector('.current-score').textContent = 0;
-  document.getElementById('score--1').textContent = 0;
+   document.getElementById('score--1').textContent = 0;
   document.getElementById('current--1').textContent = 0;
-}
+  totalScore = 0;
+    totalScore2 = 0;
+  currentScore = 0;
+  currentScore2 = 0;
+  }
 
 function switchPlayer() {
   if (currentPlayer === 'Player 1') {
@@ -71,6 +88,10 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
     } else if (roll === 6) {
       document.querySelector('.dice').src = 'dice-6.png';
       currentScore = currentScore + 6;
+    } if(Number(document.getElementById('score--0').textContent) >= 100)
+    {
+      document.querySelector('.player--0').classList.remove('player--active');
+      document.querySelector('.player--0').classList.add('player--winner');
     }
 
     document.getElementById('current--0').textContent = currentScore;
@@ -95,6 +116,13 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
       document.querySelector('.dice').src = 'dice-6.png';
       currentScore2 = currentScore2 + 6;
     }
+    if(Number(document.getElementById('score--1').textContent) >= 100)
+    {
+      document.querySelector('.player--0').classList.remove('player--active');
+      document.querySelector('.player--1').classList.add('player--winner');
+    }
+
     document.getElementById('current--1').textContent = currentScore2;
   }
 });
+
